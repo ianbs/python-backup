@@ -1,8 +1,16 @@
 from tkinter import Tk, Label, Entry, Button
 from tkinter.ttk import Progressbar
-import shutil
+import time
 
 from events.backup import copia_pastas
+
+
+def step(master, progresso_copia):
+    for i in range(5):
+        master.update_idletasks()
+        progresso_copia["value"] += 20
+
+        time.sleep(1)
 
 
 class MainGui:
@@ -35,15 +43,19 @@ class MainGui:
             master,
             text="Realizar Copia de Arquivos",
             command=lambda: copia_pastas(
-                self.caminho_origem.get(), self.caminho_destino.get()
+                self.caminho_origem.get(),
+                self.caminho_destino.get(),
+                step(master, self.progresso_copia),
             ),
             height=1,
             width=50,
         )
-        self.realizar_button.grid(row=2, column=1, padx=20, pady=20)
+        self.realizar_button.grid(row=2, column=1, padx=5, pady=5)
 
-        self.progresso_copia = Progressbar(master=master)
-        self.progresso_copia.grid(row=4, column=1, padx=20, pady=20)
+        self.progresso_copia = Progressbar(
+            master=master, orient="horizontal", length=300, mode="indeterminate"
+        )
+        self.progresso_copia.grid(row=3, column=1, padx=5, pady=5)
 
 
 root = Tk()
