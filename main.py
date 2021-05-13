@@ -15,7 +15,6 @@ def copia_pastas(pasta_origem: str, pasta_destino: str) -> bool:
                         symlinks=True)
     except OSError:
         raise OSError.strerror
-    return True
 
 
 pasta_origem = str(
