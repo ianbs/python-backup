@@ -1,4 +1,4 @@
-from tkinter import Tk, Label, Entry, Button
+from tkinter import Tk, Label, Entry, Button, PhotoImage
 from tkinter.ttk import Progressbar
 import time
 
@@ -15,9 +15,11 @@ def step(master, progresso_copia):
 
 class MainGui:
     def __init__(self, master):
+        icon = PhotoImage(file="assets/icon.png")
         self.master = master
         master.title("Backup")
         master.geometry("650x150")
+        master.iconphoto(False, icon)
         master.rowconfigure(4, minsize=300, weight=1)
         master.columnconfigure(3, minsize=500, weight=1)
 
